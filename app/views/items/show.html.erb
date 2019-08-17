@@ -1,0 +1,11 @@
+<h1><%= @item.name %></h1>
+<img src= <%= @item.image %>>
+<p><%= @item.description %></p>
+<p>Price: $<%= @item.price %> </p>
+<p>Inventory: <%= @item.inventory %> </p>
+<p>Sold by: <%= @item.merchant.name %> </p>
+<% if @item.active? %>
+  <p style= "color:green">Active</p>
+<% else %>
+  <p style= "color:red">Inactive</p>
+<% end %>
