@@ -1,7 +1,10 @@
-<h1>Merchants</h1>
+<h1 align = "center">Merchants</h1>
+<section class = "grid-container">
+  <% @merchants.each do |merchant|%>
+    <section class = "grid-item">
+      <h2><%=link_to merchant.name, "/merchants/#{merchant.id}"%></h2>
+    </section>
+  <% end %>
+</section>
 
-<% @merchants.each do |merchant|%>
-  <h2><%=link_to merchant.name, "/merchants/#{merchant.id}"%></h2>
-<% end %>
-
-<%= link_to "New Merchant", "/merchants/new" %>
+<p align="right"><%= link_to "New Merchant", "/merchants/new" %></p>
