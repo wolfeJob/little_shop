@@ -3,7 +3,7 @@
 <p><%= @item.description %></p>
 <p>Price: $<%= @item.price %> </p>
 <p>Inventory: <%= @item.inventory %> </p>
-<p>Sold by: <%= @item.merchant.name %> </p>
+<p>Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
 <% if @item.active? %>
   <p style= "color:green">Active</p>
 <% else %>

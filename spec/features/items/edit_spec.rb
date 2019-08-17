@@ -14,6 +14,7 @@ RSpec.describe "As a Visitor" do
         click_on "Edit Item"
 
         expect(current_path).to eq("/items/#{@tire.id}/edit")
+        expect(page).to have_link("Gatorskins")
         expect(find_field('Name').value).to eq "Gatorskins"
         expect(find_field('Price').value).to eq '100'
         expect(find_field('Description').value).to eq "They'll never pop!"
@@ -46,7 +47,6 @@ RSpec.describe "As a Visitor" do
         expect(page).to_not have_content("Price: $100")
         expect(page).to have_content("They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail.")
         expect(page).to_not have_content("They'll never pop!")
-
       end
     end
   end

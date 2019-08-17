@@ -7,6 +7,7 @@ RSpec.describe 'item show page', type: :feature do
 
     visit "items/#{chain.id}"
 
+    expect(page).to have_link(chain.merchant.name)
     expect(page).to have_content(chain.name)
     expect(page).to have_content(chain.description)
     expect(page).to have_content("Price: $#{chain.price}")
