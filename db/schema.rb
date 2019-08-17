@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20190817190207) do
     t.string "city"
     t.string "state"
     t.integer "zip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "items", "merchants"
