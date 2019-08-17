@@ -9,6 +9,7 @@ RSpec.describe "As a Visitor" do
       visit "/merchants/#{@bike_shop.id}"
       click_on "Update Merchant"
 
+      expect(page).to have_link(@bike_shop.name)
       expect(find_field('Name').value).to eq "Brian's Bike Shop"
       expect(find_field('Address').value).to eq '123 Bike Rd.'
       expect(find_field('City').value).to eq 'Richmond'

@@ -12,6 +12,17 @@ RSpec.describe "Items Index Page" do
       @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
     end
 
+    it "all items or merchant names are links" do
+      visit '/items'
+
+      expect(page).to have_link(@tire.name)
+      expect(page).to have_link(@tire.merchant.name)
+      expect(page).to have_link(@pull_toy.name)
+      expect(page).to have_link(@pull_toy.merchant.name)
+      expect(page).to have_link(@dog_bone.name)
+      expect(page).to have_link(@dog_bone.merchant.name)
+    end
+
     it "I can see a list of all of the items "do
 
       visit '/items'

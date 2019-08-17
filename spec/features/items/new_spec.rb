@@ -23,6 +23,7 @@ RSpec.describe "Create Merchant Items" do
 
       click_on "Add New Item"
 
+      expect(page).to have_link(@brian.name)
       expect(current_path).to eq("/merchants/#{@brian.id}/items/new")
       fill_in 'Name', with: name
       fill_in 'Price', with: price

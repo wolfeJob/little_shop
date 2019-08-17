@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LittleShop1906Starter</title>
+    <title>Little Shop</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,6 +9,10 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to "All Merchants", "/merchants"%>
+      <%= link_to "All Items", "/items"%>
+    </nav>
     <%= yield %>
   </body>
 </html>
