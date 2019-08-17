@@ -13,5 +13,15 @@ RSpec.describe 'merchant show page', type: :feature do
       expect(page).to have_content("123 Bike Rd.\nRichmond, VA 23137")
     end
 
+    it 'I can see a link to visit the merchant items' do
+      visit "/merchants/#{@bike_shop.id}"
+
+      expect(page).to have_link("All #{@bike_shop.name} Items")
+
+      click_on "All #{@bike_shop.name} Items"
+
+      expect(current_path).to eq("/merchants/#{@bike_shop.id}/items")
+    end
+
   end
 end
