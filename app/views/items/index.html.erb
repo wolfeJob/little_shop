@@ -16,3 +16,5 @@
     <% end %>
   </section>
 <% end %>
+
+<%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new" if @merchant%>
