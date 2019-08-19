@@ -42,7 +42,7 @@ RSpec.describe "Create Merchant Items" do
       expect(new_item.image).to eq(image_url)
       expect(new_item.inventory).to eq(inventory)
       expect(Item.last.active?).to be(true)
-      expect("#item-#{Item.last.id}").to be_present
+      expect(page).to have_css("#item-#{Item.last.id}")
       expect(page).to have_content(name)
       expect(page).to have_content("Price: $#{new_item.price}")
       expect(page).to have_css("img[src*='#{new_item.image}']")
