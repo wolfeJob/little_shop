@@ -1,40 +1,24 @@
 require 'rails_helper'
-
-RSpec.describe 'New Merchant Item' do
-  describe 'As a Visitor' do
-    before :each do
-      @scott = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
-    end
-
-    xit 'I can click a link to a new item form page' do
-      visit "/merchants/#{@scott.id}/items"
-
-      click_link 'New Item'
-
-      expect(current_path).to eq("/merchants/#{@scott.id}/items/new")
-    end
-
-    xit 'I can create an  item for a merchant' do
-      name = 'Pokemon Yellow'
-      description = "Pokemon Yellow for GBA"
-      price = 20
-      image = 'https://images-na.ssl-images-amazon.com/images/I/71LLwCMhi%2BL._AC_SX430_.jpg'
-      inventory = 5
-
-      visit "/merchants/#{@scott.id}/items/new"
-
-      fill_in 'Name', with: name
-      fill_in 'Description', with: description
-      fill_in 'Price', with: price
-      fill_in 'Image', with: image
-      fill_in 'Inventory', with: inventory
-      click_button 'Create Item'
-      expect(current_path).to eq("/merchants/#{@scott.id}/items")
-      expect(page).to have_link(name)
-      expect(page).to have_content(description)
-      expect(page).to have_content("Price: #{number_to_currency(price)}")
-      expect(page).to have_content("Active")
-      expect(page).to have_content("Inventory: #{inventory}")
-    end
-  end
-end
+describe 'New Item Review' do
+ describe 'When I visit the page to add an item review' do
+   before :each do
+     @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+     @tire = @meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588(52 kB)', inventory: 12)
+   end
+   it 'I can fill out the review form and create a new review' do
+     visit "/items/#{@tire.id}/review"
+     title = 'Great tire'
+     content = 'It works very well'
+     rating = 5
+     fill_in 'Title', with: title
+     fill_in 'Content', with: content
+     fill_in 'Rating', with: rating
+     click_button 'Create Review'
+     new_review = Review.last
+     expect(current_path).to eq("/items/#{@tire.id}")
+       expect(page).to have_content(title)
+       expect(page).to have_content(content)
+       expect(page).to have_content(rating)
+     end
+   end
+ end
