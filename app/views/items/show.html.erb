@@ -16,6 +16,21 @@
       <% end %>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
+      <p><%= link_to 'Update Item', "/items/#{@item.id}/edit" %></p>
+
     </section>
   </section>
+
+      <hr>
+
+      <h4>Reviews</h4>
+    <% @item.reviews.each do |review| %>
+        <p>Title: <%= review.title %></p>
+        <p>Description: <%= review.content %></p>
+        <p>Rating: <%= review.rating %></p>
+        <%= link_to "Edit Review", "/reviews/#{review.id}/edit" %>
+        <%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %>
+    <% end %>
+
+
 </center>

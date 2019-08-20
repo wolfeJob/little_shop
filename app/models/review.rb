@@ -1,7 +1,7 @@
 class Review <ApplicationRecord
-  belongs_to :items
+  belongs_to :item
 
-  valiates_presence_of :title,
-                       :content,
-                       :rating
+  validates_presence_of :title,
+                        :content,
+                        :rating
 end
