@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   patch "/merchants/:id", to: "merchants#update"
   delete "/merchants/:id", to: "merchants#destroy"
   #review routes
+  get "/items/:item_id/review", to: "reviews#new"
+  post "/items/:item_id", to: "reviews#create"
   get '/reviews/:id/edit', to: 'reviews#edit'
   patch '/reviews/:id', to: 'reviews#update'
   delete '/reviews/:id', to: 'reviews#destroy'
