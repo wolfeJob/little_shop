@@ -13,12 +13,12 @@
       <p> <%= item.description unless @merchant%> </p>
       <p>Price: $<%= item.price %> </p>
       <p>Inventory: <%= item.inventory %> </p>
-      <p><%= button_to "Add Item", '/cart' %></p>
       <% if item.active? %>
         <p>Active</p>
       <% else %>
         <p>Inactive</p>
       <% end %>
+      <p><%= button_to "Add Item", '/cart' %></p>
     </section>
     <% end %>
 </section>
