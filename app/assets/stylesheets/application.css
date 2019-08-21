@@ -80,6 +80,11 @@ img{
    color: black;
  }
 
+ #cart{
+    color: white;
+    float: right;
+ }
+
  .address{
    text-align: center;
  }
