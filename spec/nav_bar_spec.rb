@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Site Navigation' do
+RSpec.describe 'Site Navigation', type: :feature do
   describe 'As a Visitor' do
     it "I see a nav bar with links to all pages" do
 
@@ -29,7 +29,7 @@ RSpec.describe 'Site Navigation' do
       expect(page).to have_content("Cart")
       visit "/merchants/#{scott.id}/items"
       expect(page).to have_content("Cart")
-      visit "/items/#{scott.id}"
+      visit "/items/#{salad.id}"
       expect(page).to have_content("Cart")
     end
   end
