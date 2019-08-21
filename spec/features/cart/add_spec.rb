@@ -16,6 +16,6 @@ RSpec.describe "When user adds item to cart" do
      click_button "Add Item"
    end
 
-   expect(page).to have_content("You now have 1 copy of #{@vg_1.title} in your cart.")
+   expect(page).to have_content("You now have 1 copy of #{@vg_1.name} in your cart.")
  end
 end
