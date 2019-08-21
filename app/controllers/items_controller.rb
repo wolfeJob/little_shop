@@ -1,5 +1,4 @@
 class ItemsController<ApplicationController
-
   def index
     if params[:merchant_id]
       @merchant = Merchant.find(params[:merchant_id])
@@ -36,13 +35,12 @@ class ItemsController<ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy
-    redirect_to "/items"
+    redirect_to '/items'
   end
 
   private
 
   def item_params
-    params.permit(:name,:description,:price,:inventory,:image)
+    params.permit(:name, :description, :price, :inventory, :image)
   end
-
 end
