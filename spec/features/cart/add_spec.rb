@@ -13,7 +13,7 @@ RSpec.describe "When user adds item to cart" do
    visit '/items'
 
    within("#item-#{@vg_1.id}") do
-     click_button "Add Song"
+     click_button "Add Item"
    end
 
    expect(page).to have_content("You now have 1 copy of #{@vg_1.title} in your cart.")
