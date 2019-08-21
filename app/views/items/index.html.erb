@@ -18,7 +18,7 @@
       <% else %>
         <p>Inactive</p>
       <% end %>
-      <p><%= button_to "Add Item", '/cart' %></p>
+      <p><%= button_to "Add Item", "/cart/#{item.id}" %></p>
     </section>
     <% end %>
 </section>
