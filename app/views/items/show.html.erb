@@ -23,7 +23,7 @@
 
       <hr>
 
-      <h4>Reviews</h4>
+    <h4>Reviews</h4>
     <% @item.reviews.each do |review| %>
         <p>Title: <%= review.title %></p>
         <p>Description: <%= review.content %></p>
@@ -34,5 +34,23 @@
 
       <h1><%= link_to 'Add Review', "/items/#{@item.id}/review", method: :get %><h1>
 
-
+<section class='reviews'>
+  <h2>Reviews</h2>
+    <h3>Average Rating: <%= @item.average_rating %></h3>
+    <section id='top-three-reviews'>
+    <h3>Top 3 Reviews</h3>
+    <ul>
+      <% @item.sort_reviews(3, :desc).each do |review| %>
+      <li><%= review.title %></li>
+  <% end %>
+  </ul>
+    </section>
+    <section id='bottom-three-reviews'>
+      <h3>Bottom 3 Reviews</h3>
+      <ul>
+      <% @item.sort_reviews(3, :asc).each do |review| %>
+      <li><%= review.title %></li>
+    <% end %>
+  </ul>
+</section>
 </center>

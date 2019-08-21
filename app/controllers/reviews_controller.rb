@@ -1,32 +1,33 @@
 class ReviewsController < ApplicationController
+  def index
+    @reviews = Review.all
+  end
+
   def new
     @item = Item.find(params[:item_id])
   end
 
   def edit
-    @review = Review.find(
-      params[:id])
-    @item = @review.item
+    @review = Review.find(params[:id])
   end
 
   def update
     @review = Review.find(params[:id])
     @item = @review.item
-    # review = Review.find(params[:id])
     @review.update(review_params)
     redirect_to "/items/#{@item.id}"
   end
 
   def create
-   @item = Item.find(params[:item_id])
-   @review = @item.reviews.new(review_params)
-   if @review.save
-     redirect_to "/items/#{@item.id}"
-   else
-     flash[:alert] = "Review unsuccessfully created"
-     redirect_to "/items/#{@item.id}/review"
-   end
- end
+    @item = Item.find(params[:item_id])
+    @review = @item.reviews.new(review_params)
+    if @review.save
+      redirect_to "/items/#{@item.id}"
+    else
+      generate_flash(@review)
+      render :new
+    end
+  end
 
   def destroy
     @review = Review.find(params[:id])
@@ -35,6 +36,9 @@ class ReviewsController < ApplicationController
     redirect_to "/items/#{@item.id}"
   end
 
+  # def average_rating
+  #   @reviews.average(:rating)
+  # end
 
   private
 
