@@ -6,4 +6,11 @@ class ApplicationController < ActionController::Base
       flash[validation] = "#{validation}: #{message}"
     end
   end
+
+  helper_method :cart
+
+def cart
+  @cart ||= Cart.new(session[:cart])
+end
+
 end
