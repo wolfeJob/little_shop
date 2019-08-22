@@ -50,6 +50,5 @@ RSpec.describe "When user adds item to cart" do
    end
 
    expect(page).to have_content("Cart: 3")
-
 end
 end

@@ -24,5 +24,7 @@ Rails.application.routes.draw do
   post "/merchants/:merchant_id/items", to: "items#create"
   delete "/items/:id", to: "items#destroy"
   #cart routes
-  post "/cart/:item_id", to: "carts#create"
+  get "/cart", to: "cart#show"
+  post "/cart/:item_id", to: "cart#create"
+  delete "/cart", to: "cart#empty"
 end
