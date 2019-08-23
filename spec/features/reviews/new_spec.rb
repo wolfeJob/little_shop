@@ -26,7 +26,7 @@ describe 'New Item Review' do
       expect(page).to have_content(rating)
     end
 
-    xit 'a rating cannot be given greater than 5' do
+    it 'a rating cannot be given greater than 5' do
       visit "/items/#{@tire.id}/review"
 
       title = 'Great tire'
@@ -39,11 +39,11 @@ describe 'New Item Review' do
 
       click_button 'Create Review'
 
-      expect(page).to have_content('Rating must be 1 - 5')
+      expect(page).to have_content("Review not created, required information missing, and rating must be between 1-5")
       expect(page).to have_button 'Create Review'
     end
 
-    xit 'a rating cannot be given less than 1' do
+    it 'a rating cannot be given less than 1' do
       visit "/items/#{@tire.id}/review"
 
       title = 'Great tire'
@@ -56,11 +56,11 @@ describe 'New Item Review' do
 
       click_button 'Create Review'
 
-      expect(page).to have_content('Rating must be 1 - 5')
+      expect(page).to have_content("Review not created, required information missing, and rating must be between 1-5")
       expect(page).to have_button 'Create Review'
     end
 
-    xit 'I cannot create a review without a title' do
+    it 'I cannot create a review without a title' do
       visit "/items/#{@tire.id}/review"
 
       content = 'It works very well'
@@ -70,11 +70,11 @@ describe 'New Item Review' do
       fill_in 'Rating', with: rating
       click_button 'Create Review'
 
-      expect(page).to have_content('Title: [\'must fill in title\']')
+      expect(page).to have_content("Review not created, required information missing, and rating must be between 1-5")
       expect(page).to have_button 'Create Review'
     end
 
-    xit 'I cannot create a review without content' do
+    it 'Shows flash message when content area of review not filled in' do
       visit "/items/#{@tire.id}/review"
 
       title = 'Great tire'
@@ -84,7 +84,7 @@ describe 'New Item Review' do
       fill_in 'Rating', with: rating
       click_button 'Create Review'
 
-      expect(page).to have_content('Content: [\'must fill in content\']')
+      expect(page).to have_content("Review not created, required information missing, and rating must be between 1-5")
       expect(page).to have_button 'Create Review'
     end
   end

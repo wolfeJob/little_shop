@@ -19,6 +19,17 @@ include ActionView::Helpers::TextHelper
     redirect_to '/cart'
   end
 
+  def remove_item
+    @item = Item.find(params[:item_id])
+    session[:cart] = cart.contents
+    cart.remove_item(@item.id)
+    quantity = cart.count_of(@item.id)
+    if quantity == 0
+      cart.contents.delete(params[:item_id])
+    end
+    redirect_to '/cart' and return
+  end
+
 
 private
 

@@ -24,8 +24,8 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to "/items/#{@item.id}"
     else
-      generate_flash(@review)
-      render :new
+      flash[:notice] = "Review not created, required information missing, and rating must be between 1-5"
+      redirect_to "/items/#{@item.id}/review"
     end
   end
 
