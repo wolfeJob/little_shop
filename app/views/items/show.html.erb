@@ -14,6 +14,7 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
+      <%= button_to "Add Item", "/cart/#{@item.id}" %><br>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete %></p>
       <p><%= link_to 'Update Item', "/items/#{@item.id}/edit" %></p>
