@@ -63,7 +63,7 @@ https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glazed-Donut.jpg/1920p
      expect(page).to_not have_button('Empty Cart')
    end
 
- it 'I see a link to remove an item' do
+ it 'I see a link to remove an item from the cart' do
   visit "/items/#{@vg_1.id}"
   click_button 'Add Item'
 
@@ -73,7 +73,7 @@ https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glazed-Donut.jpg/1920p
   visit '/cart'
 
   within "#item-#{@vg_2.id}" do
-    click_button "Remove from Cart"
+    click_button "Remove from cart"
   end
 
   expect(page).to have_content("Cart: 1")
