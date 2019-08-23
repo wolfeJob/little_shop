@@ -30,11 +30,6 @@ include ActionView::Helpers::TextHelper
     redirect_to '/cart' and return
   end
 
-  def delete_item
-    cart.contents.delete(params[:item_id])
-    redirect_to '/cart'
-  end
-
 
 private
 
