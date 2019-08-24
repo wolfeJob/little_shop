@@ -29,6 +29,6 @@ Rails.application.routes.draw do
   delete '/cart', to: 'cart#empty'
   patch '/cart/:change/:item_id', to: 'cart#update_quantity'
 
-  #order routes
+  # order routes
   get '/new_order', to: 'orders#new'
 end
