@@ -11,7 +11,9 @@
      <p>Quantity: <%= cart.count_of(item.id) %></p>
      <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
      <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
-      <%= button_to "Remove from cart", "/cart/remove_item/#{item.id}", method: :patch %>
+     <%= button_to 'Add More', "/cart/more/#{item.id}", method: :patch unless cart.limit?(item.id) %>
+     <%= button_to 'Remove One', "/cart/less/#{item.id}", method: :patch %>
+     <%= button_to "Remove from cart", "/cart/remove_item/#{item.id}", method: :patch %>
    </section>
  <% end %>
  <%= button_to 'Empty Cart', '/cart', method: :delete %>
