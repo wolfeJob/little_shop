@@ -20,7 +20,7 @@ describe 'New Order Page' do
 
       click_link 'Checkout'
 
-      expect(current_path).to eq(new_order_path)
+      expect(current_path).to eq('/new_order')
       expect(page).to have_content("Total: #{number_to_currency((@pie.price * 1) + (@donut.price * 1))}")
 
       within "#item-#{@pie.id}" do
@@ -40,6 +40,17 @@ describe 'New Order Page' do
         expect(page).to have_content("Sold by: #{@donut_shop.name}")
         expect(page).to have_link(@donut_shop.name)
       end
+    end
+
+    it 'I also see a form to where I must enter my shipping information for the order' do
+      visit '/new_order'
+
+      expect(page).to have_field(:name)
+      expect(page).to have_field(:address)
+      expect(page).to have_field(:city)
+      expect(page).to have_field(:state)
+      expect(page).to have_field(:zip)
+      expect(page).to have_button('Create Order')
     end
   end
 end
