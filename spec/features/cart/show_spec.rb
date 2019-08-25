@@ -124,10 +124,10 @@ describe 'Cart Show Page' do
 
   it 'I see a link to checkout' do
         visit "/items/#{@vg_1.id}"
-        click_button 'Add to Cart'
+        click_button 'Add Item'
 
-        visit "/items/#{@vg_2s.id}"
-        click_button 'Add to Cart'
+        visit "/items/#{@vg_2.id}"
+        click_button 'Add Item'
 
         visit '/cart'
 
