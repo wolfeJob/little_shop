@@ -121,4 +121,17 @@ describe 'Cart Show Page' do
     expect(page).to_not have_content("#{@vg_1.name}")
     expect(page).to have_content("Cart: 0")
   end
+
+  it 'I see a link to checkout' do
+        visit "/items/#{@vg_1.id}"
+        click_button 'Add Item'
+
+        visit "/items/#{@vg_2.id}"
+        click_button 'Add Item'
+
+        visit '/cart'
+
+        click_link "Checkout"
+        expect(current_path).to eq(new_order_path)
+      end
 end

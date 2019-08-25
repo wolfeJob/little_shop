@@ -2,6 +2,7 @@
 <% if cart.contents.empty? %>
  <p>Your Cart is Empty</p>
 <% else %>
+<%= link_to "Checkout", "/new_order" %>
 <h3>Total: <%= number_to_currency(cart.grand_total) %></h3>
 <% cart.actual_items.each do |item| %>
 <section id = 'item-<%=item.id%>'>
