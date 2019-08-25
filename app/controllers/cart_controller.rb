@@ -6,10 +6,14 @@ class CartController < ApplicationController
 
   def create #add item to cart
     @item = Item.find(params[:item_id])
-    cart.add_item(@item.id)
     session[:cart] ||= cart.contents
-    quantity = cart.count_of(@item.id)
-    flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{@item.name} in your cart."
+    if cart.limit?(@item.id)
+      flash[:notice] = "There is no more inventory for this item"
+    else
+      cart.add_item(@item.id)
+      quantity = cart.count_of(@item.id)
+      flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{@item.name} in your cart."
+    end
     redirect_to '/items'
   end
 
