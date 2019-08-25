@@ -1,11 +1,21 @@
 <center>
 <h1>New Order</h1>
 
+<% cart.actual_items.each do |item| %>
+<section id = 'item-<%=item.id%>'>
+  <p>Item: <%= link_to item.name, "/items/#{item.id}" %></p>
+  <p>Sold by: <%= link_to "#{item.merchant.name}", "/merchants/#{item.merchant.id}" %></p>
+  <p>Price: <%= number_to_currency(item.price) %></p>
+  <p>Quantity: <%= cart.count_of(item.id) %></p>
+  <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
+<% end %>
+<h4>Grand Total: <%= number_to_currency(cart.grand_total) %></h4>
+
 <section id="shipping">
   <h3>Shipping Information</h3>
   <%= form_tag '/orders' do %>
-    <%= label_tag :username %>:<br>
-    <%= text_field_tag :username %><br>
+    <%= label_tag :name %>:<br>
+    <%= text_field_tag :name %><br>
 
     <%= label_tag :address %>:<br>
     <%= text_field_tag :address %><br>
@@ -16,18 +26,9 @@
     <%= label_tag :state %>:<br>
     <%= text_field_tag :state %><br>
 
-    <%= label_tag :zipcode %>:<br>
-    <%= number_field_tag :zipcode %><br>
+    <%= label_tag :zip %>:<br>
+    <%= number_field_tag :zip %><br>
 
     <%= submit_tag "Create Order" %>
   <% end %>
-
-<% @items.each do |item, quantity| %>
-  <p>Item: <%= link_to item.name, "/items/#{item.id}" %></p>
-  <p>Merchant: <%= link_to "#{item.merchant.name}", "/merchants/#{item.merchant.id}" %></p>
-  <p>Cost: <%= number_to_currency(item.price) %></p>
-  <p>Quantity: <%= quantity %></p>
-  <p>Subtotal: <%= number_to_currency(item.price * quantity) %></p>
-<% end %>
-<h4>Grand Total: <%= number_to_currency(cart.grand_total) %></h4>
 </center>
