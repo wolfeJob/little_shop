@@ -30,5 +30,7 @@ Rails.application.routes.draw do
   patch '/cart/:change/:item_id', to: 'cart#update_quantity'
 
   # order routes
-  get '/new_order', to: 'orders#new'
+  get '/orders/new', to: "orders#new"
+  post '/orders', to: "orders#create"
+  get "/orders/:id", to: "orders#show"
 end
