@@ -12,8 +12,13 @@ class MerchantsController <ApplicationController
   end
 
   def create
-    Merchant.create(merchant_params)
-    redirect_to "/merchants"
+    merchant = Merchant.new(merchant_params)
+    if merchant.save
+      redirect_to '/merchants'
+    else
+      flash[:notice] = "You must fill in all fields to create a merchant."
+      redirect_to '/merchants/new'
+    end
   end
 
   def edit
@@ -22,8 +27,13 @@ class MerchantsController <ApplicationController
 
   def update
     merchant = Merchant.find(params[:id])
-    merchant.update(merchant_params)
-    redirect_to "/merchants/#{merchant.id}"
+    if !merchant.update(merchant_params)
+      flash[:notice] = "You must fill in all fields to update a merchant."
+      redirect_to "/merchants/#{merchant.id}/edit"
+    else
+      merchant.update(merchant_params)
+      redirect_to "/merchants/#{merchant.id}"
+    end
   end
 
   def destroy
@@ -37,4 +47,5 @@ class MerchantsController <ApplicationController
   def merchant_params
     params.permit(:name,:address,:city,:state,:zip)
   end
+
 end
