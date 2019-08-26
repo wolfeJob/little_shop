@@ -32,20 +32,20 @@ RSpec.describe "Order show" do
     address = '111 cool st'
     city = "Denver"
     state = "CO"
-    zip = "80011"
+    zip = 80011
 
       within '#shipping' do
         fill_in "Username", with: name
         fill_in "Address", with: address
         fill_in "City", with: city
         fill_in "State", with: state
-        fill_in "Zip", with: zip
+        fill_in "Zipcode", with: zip
       end
 
       click_button "Create Order"
 
       order = Order.last
-binding.pry
+# binding.pry
       expect(current_path).to eq("/orders/#{order.id}")
 
       expect(page).to have_content(name)

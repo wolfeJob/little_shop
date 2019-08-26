@@ -5,12 +5,12 @@ class OrdersController < ApplicationController
 
 
 def create
+  # binding.pry
    order = Order.new(order_params)
-   order.save
    if order.save
      cart.contents.each do |item_id, quantity|
        item = Item.find(item_id)
-       order_item = Order.create!(order: order, item: item, price: item.price, quantity: quantity)
+       order_item = OrderItem.create!(order: order, item: item, price: item.price, quantity: quantity)
      end
      redirect_to "/orders/#{order.id}"
    else

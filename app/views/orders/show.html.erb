@@ -16,9 +16,9 @@
   <h5>Cost: <%= number_to_currency(item.price) %></h5>
 <% end %>
 
-<% @order_items.each do |order_item| %>
+<% @order.order_items.each do |order_item| %>
   <h5>Amount: <%= order_item.quantity %></h5>
   <h5>Subtotal: <%= number_to_currency((order_item.price) * (order_item.quantity)) %></h5>
 <% end  %>
 
-<h4>Total: <%= number_to_currency(cart.total) %></h4>
+<h4>Grand Total: <%= number_to_currency(cart.grand_total) %></h4>
