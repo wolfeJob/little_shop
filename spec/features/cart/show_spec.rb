@@ -132,6 +132,6 @@ describe 'Cart Show Page' do
         visit '/cart'
 
         click_link "Checkout"
-        expect(current_path).to eq(new_order_path)
+        expect(current_path).to eq('/orders/new')
       end
 end

@@ -13,9 +13,9 @@
 
 <section id="shipping">
   <h3>Shipping Information</h3>
-  <%= form_tag '/orders' do %>
-    <%= label_tag :name %>:<br>
-    <%= text_field_tag :name %><br>
+  <%= form_tag "/orders", method: :post do %>
+    <%= label_tag :username %>:<br>
+    <%= text_field_tag :username %><br>
 
     <%= label_tag :address %>:<br>
     <%= text_field_tag :address %><br>
@@ -26,8 +26,8 @@
     <%= label_tag :state %>:<br>
     <%= text_field_tag :state %><br>
 
-    <%= label_tag :zip %>:<br>
-    <%= number_field_tag :zip %><br>
+    <%= label_tag :zipcode %>:<br>
+    <%= number_field_tag :zipcode %><br>
 
     <%= submit_tag "Create Order" %>
   <% end %>

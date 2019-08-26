@@ -13,8 +13,8 @@
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <div id = 'cart'>
-      <h4> Cart: <%= cart.total_count %> </h4>
-      <img src="https://cdn0.iconfinder.com/data/icons/business-finance-vol-10-5/512/19-512.png" alt="Grocery cart">
+      <a href = '/cart'><h4> Cart: <%= cart.total_count %> </h4>
+      <a href = '/cart'><img src="https://cdn0.iconfinder.com/data/icons/business-finance-vol-10-5/512/19-512.png" alt="Grocery cart">
       </div>
     </nav>
     <% flash.each do |type, message| %>
