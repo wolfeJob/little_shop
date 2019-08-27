@@ -37,8 +37,12 @@ class MerchantsController <ApplicationController
   end
 
   def destroy
-    Item.delete(Item.where(merchant_id: params[:id]))
-    Merchant.destroy(params[:id])
+    merchant = Merchant.find(params[:id])
+    if OrderItem.include?(merchant.items)
+      merchant.destroy
+    else
+      flash[:notice] = "#{merchant.name} cannot be deleted becasue they have items on order"
+    end
     redirect_to '/merchants'
   end
 
