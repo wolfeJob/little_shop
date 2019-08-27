@@ -1,8 +1,8 @@
 class Item <ApplicationRecord
   belongs_to :merchant
   has_many :order_items, :dependent => :destroy
-   has_many :orders, through: :order_items
-   has_many :reviews, :dependent => :destroy
+  has_many :orders, through: :order_items
+  has_many :reviews, :dependent => :destroy
   validates_presence_of :name,
                         :description,
                         :price,
@@ -18,5 +18,4 @@ class Item <ApplicationRecord
   def average_rating
     reviews.average(:rating)
   end
-
 end
