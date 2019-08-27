@@ -23,12 +23,14 @@ describe "Destroy a Merchant" do
     expect(page).to_not have_content(@chain.name)
   end
 
-  it 'If a merchant has items ordered then I do not see a button to delete the merchant' do
-    order = Order.create(username: 'Christopher', address: '1234 5th St', city: 'Denver', state: 'CO', zipcode: 80021)
-    order.order_items.create(item: @chain, quantity: 1, price: @chain.price)
+    it 'If a merchant has items ordered then I get a message that it cannot be deleted when I try to delete' do
+      order = Order.create(username: 'Christopher', address: '1234 5th St', city: 'Denver', state: 'CO', zipcode: 80021)
+      OrderItem.create(order: order, item: @chain, quantity: 1, price: @chain.price)
 
-    visit "merchants/#{@bike_shop.id}"
+      visit "merchants/#{@bike_shop.id}"
 
-    expect(page).to_not have_button('Delete Merchant')
-  end
+      click_on "Delete Merchant"
+
+      expect(page).to have_content("#{@bike_shop.name} cannot be deleted becasue they have items on order")
+    end
 end

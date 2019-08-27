@@ -38,10 +38,10 @@ class MerchantsController <ApplicationController
 
   def destroy
     merchant = Merchant.find(params[:id])
-    if OrderItem.include?(merchant.items)
-      merchant.destroy
-    else
+    if merchant.has_orders?
       flash[:notice] = "#{merchant.name} cannot be deleted becasue they have items on order"
+    else
+      merchant.destroy
     end
     redirect_to '/merchants'
   end
