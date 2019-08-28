@@ -10,4 +10,8 @@ describe Review do
   describe 'relationships' do
     it { should belong_to :item }
   end
+
+  describe 'inclusions' do
+  it { validate_inclusion_of :in => 1..5 } 
+  end
 end

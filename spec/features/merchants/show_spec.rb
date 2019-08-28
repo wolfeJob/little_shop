@@ -25,12 +25,12 @@ RSpec.describe 'merchant show page', type: :feature do
     end
 
     it 'I see merchant statistics' do
-      visit "/merchants/#{@bike_shop.id}"
+    visit "/merchants/#{@bike_shop.id}"
 
-      within '.statistics' do
-        expect(page).to have_content("Item Count: #{@bike_shop.items.count}")
-        expect(page).to have_content("Average Prices: #{number_to_currency(@bike_shop.average_prices)}")
-        expect(page).to have_content("Cities Served: #{@bike_shop.cities_shipped_to}")
+    within '.statistics' do
+      expect(page).to have_content("Item Count: #{@bike_shop.items.count}")
+      expect(page).to have_content("Average Prices: #{number_to_currency(@bike_shop.average_prices)}")
+      expect(page).to have_content("Cities Served: #{@bike_shop.cities_shipped_to}")
       end
     end
   end

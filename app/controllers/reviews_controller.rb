@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
-  def index
-    @reviews = Review.all
-  end
-
+  
   def new
     @item = Item.find(params[:item_id])
   end
@@ -35,10 +32,6 @@ class ReviewsController < ApplicationController
     Review.destroy(params[:id])
     redirect_to "/items/#{@item.id}"
   end
-
-  # def average_rating
-  #   @reviews.average(:rating)
-  # end
 
   private
 
