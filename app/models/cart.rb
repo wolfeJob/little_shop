@@ -43,9 +43,4 @@ class Cart
     count_of(item_id) == Item.find(item_id).inventory
   end
 
-  def display_cart
-    cart = @contents.map do |item_id, quantity|
-      [Item.find(item_id), quantity]
-    end
-  end
 end

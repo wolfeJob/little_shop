@@ -39,11 +39,12 @@ describe Item, type: :model do
   end
 
   describe "has_orders?" do
-    it "verifies if item is currently on an order"do
-    @order = Order.create!(username: 'Christopher', address: '123 Oak', city: 'Denver', state: 'CO', zipcode: 80021)
-    @order.order_items.create!(item: @FFX_game, price: @FFX_game.price, quantity: 1)
-    expect(@FFX_game.has_orders?).to eq(false)
-  end
-  end
+     it "verifies if item is currently on an order"do
+       expect(@FFX_game.has_orders?).to eq(true)
+       @order = Order.create!(username: 'Christopher', address: '123 Oak', city: 'Denver', state: 'CO', zipcode: 80021)
+       @order.order_items.create!(item: @FFX_game, price: @FFX_game.price, quantity: 1)
+       expect(@FFX_game.has_orders?).to eq(false)
+     end
+   end
 end
 end
