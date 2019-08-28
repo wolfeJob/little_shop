@@ -4,7 +4,7 @@ class CartController < ApplicationController
   def show
   end
 
-  def create 
+  def create
     @item = Item.find(params[:item_id])
     session[:cart] ||= cart.contents
     if cart.limit?(@item.id)
@@ -36,11 +36,5 @@ class CartController < ApplicationController
     end
     session[:cart] = cart.contents
     redirect_to '/cart'
-  end
-
-  private
-
-  def item_params
-    params.permit(:name, :description, :price, :inventory, :image)
   end
 end

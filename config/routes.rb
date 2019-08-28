@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/merchants/:merchant_id/items/new', to: 'items#new'
   post '/merchants/:merchant_id/items', to: 'items#create'
   delete '/items/:id', to: 'items#destroy'
+
   # cart routes
   get '/cart', to: 'cart#show'
   post '/cart/:item_id', to: 'cart#create'

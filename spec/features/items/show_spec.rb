@@ -43,7 +43,7 @@ describe 'item show page' do
   end
 
   it 'shows the top 3 reviews' do
-    visit visit "/items/#{@chain.id}"
+    visit  "/items/#{@chain.id}"
 
     within '#top-three-reviews' do
       expect(page.all('li')[0]).to have_content(@chain_review.title)
@@ -53,7 +53,7 @@ describe 'item show page' do
   end
 
   it 'it shows the bottom 3 reviews' do
-    visit visit "/items/#{@chain.id}"
+    visit "/items/#{@chain.id}"
 
     within '#bottom-three-reviews' do
       expect(page.all('li')[0]).to have_content(@chain_review_3.title)

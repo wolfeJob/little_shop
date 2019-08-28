@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
-  def index
-    @reviews = Review.all
-  end
-
+  
   def new
     @item = Item.find(params[:item_id])
   end

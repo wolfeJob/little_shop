@@ -24,4 +24,5 @@ class Merchant <ApplicationRecord
   def cities_shipped_to
     self.items.joins(:orders).distinct.pluck(:city)
   end
+  
 end

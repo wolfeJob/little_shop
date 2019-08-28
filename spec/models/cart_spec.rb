@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Cart do
   before :each do
     @scott = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
-    @FFX_game = @scott.items.create!(name: 'FFX', description: "FFX For PS4", price: 20, image: 'https://upload.wikimedia.org/wikipedia/en/a/a7/Ffxboxart.jpg', active?: true, inventory: 5 )
+    @FFX_game = @scott.items.create!(name: 'FFX', description: "FFX For PS4", price: 20, image: 'https://upload.wikimedia.org/wikipedia/en/a/a7/Ffxboxart.jpg', active?: true, inventory: 3 )
     @cart = Cart.new({
       @FFX_game.id.to_s => 2
       })
@@ -38,8 +38,34 @@ RSpec.describe Cart do
 
   describe "actual_items" do
     it "returns the actual items in the cart" do
-      expect(@cart.actual_items).to eq({@FFX_game.id.to_s => 2})
+      expect(@cart.actual_items).to eq([@FFX_game])
     end
-    end
+  end
 
+  describe "subtotal" do
+    it "returns the subtotal of items in the cart" do
+      expect(@cart.subtotal(@FFX_game.id.to_s)).to eq(40)
+    end
+  end
+
+  describe "remove_item" do
+    it "removes an item from cart" do
+      @cart.remove_item(@FFX_game.id.to_s)
+      expect(@cart.count_of(@FFX_game.id.to_s)).to eq(1)
+    end
+  end
+
+  describe "limit?" do
+    it "checks to see items in cart does not exceed inventory amount" do
+      expect(@cart.limit?(@FFX_game.id.to_s)).to eq(false)
+      @cart.add_item(@FFX_game.id.to_s)
+      expect(@cart.limit?(@FFX_game.id.to_s)).to eq(true)
+    end
+  end
+
+  describe "display_cart" do
+    it "displays cart contents" do
+      expect(@cart.actual_items).to eq([@FFX_game])
+    end
+  end
 end
