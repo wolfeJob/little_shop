@@ -17,9 +17,12 @@
         <a href = '/cart'><img src="https://cdn0.iconfinder.com/data/icons/business-finance-vol-10-5/512/19-512.png" alt="Grocery cart"></a>
       </div>
     </nav>
-
     <% flash.each do |type, message| %>
+    <center>
+    <div id = "flash">
     <%= content_tag :div, message, class: type %>
+  </div>
+  </center>
     <% end %>
     <%= yield %>
   </body>

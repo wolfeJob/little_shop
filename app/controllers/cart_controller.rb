@@ -4,7 +4,7 @@ class CartController < ApplicationController
   def show
   end
 
-  def create #add item to cart
+  def create 
     @item = Item.find(params[:item_id])
     session[:cart] ||= cart.contents
     if cart.limit?(@item.id)

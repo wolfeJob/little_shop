@@ -10,12 +10,6 @@ RSpec.describe "Order show" do
 
     it "shows my created order and all its info" do
 
-      # name = 'name'
-      # address = '123 street'
-      # city = 'aurora'
-      # state = 'CO'
-      # zip = "80011"
-
       visit "/items/#{@vg_1.id}"
       click_button 'Add Item'
 
@@ -24,7 +18,7 @@ RSpec.describe "Order show" do
 
       visit '/cart'
 
-      click_link "Checkout"
+      click_button "Checkout"
 
       expect(current_path).to eq('/orders/new')
 
@@ -45,7 +39,7 @@ RSpec.describe "Order show" do
       click_button "Create Order"
 
       order = Order.last
-# binding.pry
+
       expect(current_path).to eq("/orders/#{order.id}")
 
       expect(page).to have_content(name)
@@ -87,9 +81,9 @@ RSpec.describe "Order show" do
 
       visit '/cart'
 
-      click_link "Checkout"
+      click_button "Checkout"
 
-      # within '#shipping' do
+
         fill_in "Username", with: name
         fill_in "Address", with: address
         fill_in "City", with: city

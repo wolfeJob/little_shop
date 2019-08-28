@@ -1,8 +1,9 @@
+<center>
 <h1>Order Details</h1>
 
 <h5>Order number: <%= @order.id %></h5>
 <h5>Order Date: <%= @order.created_at %></h5>
-<h4>Username: <%= @order.username %></h4>
+<h4>Name: <%= @order.username %></h4>
 
 <h4>Shipping Address: </h4>
 <p>Street:  <%= @order.address %></p>
@@ -22,3 +23,4 @@
 <% end  %>
 
 <h4>Grand Total: <%= number_to_currency(cart.grand_total) %></h4>
+</center>

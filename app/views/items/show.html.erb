@@ -23,7 +23,7 @@
   </section>
 
       <hr>
-
+      <section class = 'actual_review'
     <h4>Reviews</h4>
     <% @item.reviews.each do |review| %>
         <p>Title: <%= review.title %></p>
@@ -32,6 +32,7 @@
         <%= link_to "Edit Review", "/reviews/#{review.id}/edit" %>
         <%= link_to 'Delete Review', "/reviews/#{review.id}", method: :delete %>
     <% end %>
+    </section>
 
       <h1><%= link_to 'Add Review', "/items/#{@item.id}/review", method: :get %><h1>
 

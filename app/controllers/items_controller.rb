@@ -6,7 +6,6 @@ class ItemsController<ApplicationController
     else
       @items = Item.all
     end
-    # @cart = Cart.new(session[:cart])
   end
 
   def show
@@ -21,7 +20,7 @@ class ItemsController<ApplicationController
    merchant = Merchant.find(params[:merchant_id])
    item = merchant.items.new(item_params)
    if !item.save
-     flash[:notice] = "You must fill in all fields to update a item."
+     flash[:notice] = "You must fill in all fields to create an item."
      redirect_to "/merchants/#{merchant.id}/items/new"
    else
      redirect_to "/merchants/#{merchant.id}/items"

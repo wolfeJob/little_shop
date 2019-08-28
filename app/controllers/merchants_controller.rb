@@ -38,7 +38,6 @@ class MerchantsController <ApplicationController
 
   def destroy
     merchant = Merchant.find(params[:id])
-    # binding.pry
     if !merchant.has_orders?
       merchant.destroy
       redirect_to '/merchants'
@@ -53,5 +52,4 @@ class MerchantsController <ApplicationController
   def merchant_params
     params.permit(:name,:address,:city,:state,:zip)
   end
-
 end

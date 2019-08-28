@@ -8,22 +8,20 @@ class Merchant <ApplicationRecord
                         :state,
                         :zip
 
-def has_orders?
-   id = self.items.joins(:orders).pluck(:merchant_id)[0]
-   if id != nil
-     true
-   else
-     false
-   end
- end
+  def has_orders?
+     id = self.items.joins(:orders).pluck(:merchant_id)[0]
+     if id != nil
+       true
+     else
+       false
+     end
+  end
 
- def average_prices
-  items.average(:price)
-end
+  def average_prices
+    items.average(:price)
+  end
 
-def cities_shipped_to
-  self.items.joins(:orders).distinct.pluck(:city)
-end
-
-
+  def cities_shipped_to
+    self.items.joins(:orders).distinct.pluck(:city)
+  end
 end

@@ -18,7 +18,7 @@ describe 'New Order Page' do
 
       visit '/cart'
 
-      click_link 'Checkout'
+      click_button 'Checkout'
 
       expect(current_path).to eq('/orders/new')
       expect(page).to have_content("Total: #{number_to_currency((@pie.price * 1) + (@donut.price * 1))}")

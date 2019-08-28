@@ -36,10 +36,6 @@ class ReviewsController < ApplicationController
     redirect_to "/items/#{@item.id}"
   end
 
-  # def average_rating
-  #   @reviews.average(:rating)
-  # end
-
   private
 
   def review_params
