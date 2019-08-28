@@ -16,4 +16,14 @@ def has_orders?
      false
    end
  end
+
+ def average_prices
+  items.average(:price)
+end
+
+def cities_shipped_to
+  self.items.joins(:orders).distinct.pluck(:city)
+end
+
+
 end

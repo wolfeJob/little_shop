@@ -18,26 +18,41 @@ class ItemsController<ApplicationController
   end
 
   def create
-    merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-    redirect_to "/merchants/#{merchant.id}/items"
-  end
+   merchant = Merchant.find(params[:merchant_id])
+   item = merchant.items.new(item_params)
+   if !item.save
+     flash[:notice] = "You must fill in all fields to update a item."
+     redirect_to "/merchants/#{merchant.id}/items/new"
+   else
+     redirect_to "/merchants/#{merchant.id}/items"
+   end
+ end
 
   def edit
     @item = Item.find(params[:id])
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to "/items/#{item.id}"
-  end
+     item = Item.find(params[:id])
+     if !item.update(item_params)
+       flash[:notice] = "You must fill in all fields to update a item."
+       redirect_to "/items/#{item.id}/edit"
+     else
+       item.update(item_params)
+       redirect_to "/items/#{item.id}"
+     end
+   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to '/items'
-  end
+     item = Item.find(params[:id])
+     if item.has_orders?
+       item.destroy
+       redirect_to '/items'
+     else
+       flash[:notice] = "#{item.name} cannot be deleted becasue this item is on order"
+       redirect_to '/items'
+     end
+   end
 
   private
 
