@@ -19,6 +19,7 @@ class Item <ApplicationRecord
     reviews.average(:rating)
   end
 
+
   def has_orders?
     id = orders.pluck(:item_id)
     if id[0] == nil

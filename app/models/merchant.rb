@@ -15,8 +15,7 @@ class Merchant <ApplicationRecord
      else
        false
      end
-  end
-
+  end 
   def average_prices
     items.average(:price)
   end
@@ -24,5 +23,4 @@ class Merchant <ApplicationRecord
   def cities_shipped_to
     self.items.joins(:orders).distinct.pluck(:city)
   end
-  
 end
